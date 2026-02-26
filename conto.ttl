@@ -1,0 +1,97 @@
+@prefix conto: <http://www.semanticweb.org/lvian/ontologies/2024/4/conto#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+
+conto:Cultivar a rdfs:Class ;
+	rdfs:label "Cultivar" ;
+	skos:altLabel "Variedade Cultivada"@pt-br, "Cultivated Variety"@en;
+	dc:description 
+		"A palavra cultivar tem origem no idioma inglês e é a combinação dos termos “cultivated” “variety” (variedade cultivada).  Variedade de planta é uma subcategoria de uma espécie vegetal que apresenta características distintas. Essas características podem ser de cor, tamanho, forma, resistência a doenças, ou sabor. De forma simplificada pode-se dizer que cultivares são variedades cultivadas de plantas que são obtidas por meio de técnicas de melhoramento genético que incluem: hibridização, reprodução seletiva, engenharia genética, ou por meio de mutações naturais, chamadas de esportes."@pt-br ;
+	rdfs:subClassOf 
+		gufo:Kind .
+
+conto:PlantSpecies a rdfs:Class ;
+	rdfs:label "Plant Species"@en, "Espécie de Planta"@pt-br ;
+	rdfs:comment 
+		"Espécie é um grupo de seres vivos que podem reproduzir-se entre si e que são isolados reprodutivamente de outros grupos. É a unidade básica do sistema taxonômico de seres vivos."@pt-br ;
+	rdfs:subClassOf
+		gufo:Kind .
+		
+conto:CultivarPreference a rdfs:Class ;
+	rdfs:label "Cultivar Preference"@en, "Preferência de Cultivar"@pt-br ;
+	dc:description 
+		"Uma preferência do cultivar com relação a algum fator específico (temperatura, luminosidade, água, nutrientes, solo, etc.)."@pt-br ;
+	rdfs:subClassOf
+		gufo:Category .
+		
+conto:TemperaturePreference a rdfs:Class ;
+	rdfs:label "Temperature Preference"@en, "Preferência de Cultivar"@pt-br ;
+	dc:description 
+		"A preferência de um cultivar quanto à temperatura."@pt-br ;
+	rdfs:subClassOf
+		gufo:Kind, conto:CultivarPreference .
+		
+conto:SoilpHPreference a rdfs:Class ;
+	rdfs:label "Soil pH Preference"@en, "Preferência de pH do Solo"@pt-br ;
+	dc:description 
+		"A preferência de um cultivar quanto ao pH do solo (ácido, neutro, alcalino)."@pt-br ;
+	rdfs:subClassOf
+		gufo:Kind, conto:CultivarPreference .
+
+conto:Management a rdfs:Class ;
+	rdfs:label "Management"@en, "Manejo"@pt-br ;
+	dc:description 
+		"Manejo é o conjunto de práticas técnicas e decisões aplicadas ao longo do ciclo de cultivo com o objetivo de promover o desenvolvimento saudável das plantas, otimizar a produção e conservar os recursos naturais. Essas práticas incluem o preparo do solo, adubação, irrigação, controle de pragas e doenças, condução das plantas, entre outras."@pt-br ;
+	rdfs:subClassOf
+		gufo:Kind .
+		
+conto:PlantingManagement a rdfs:Class ;
+	rdfs:label "Planting Management"@en, "Manejo de Plantio"@pt-br ;
+	dc:description 
+		"Plantio é o ato de colocar sementes, mudas ou propágulos vegetativos no solo ou em substrato, com o objetivo de iniciar o ciclo de cultivo de uma planta. Ele marca o início da fase de campo ou da produção em ambiente controlado (viveiro, estufa, canteiro), sendo influenciado por fatores como época, preparo do solo, forma de plantio, espaçamento e método de propagação."@pt-br ;
+	rdfs:subClassOf
+		gufo:SubKind , conto:Management .	
+
+conto:PlantingSeason a rdfs:Class ;
+	rdfs:label "Planting Season"@en, "Época de Plantio"@pt-br ;
+	dc:description 
+		"Época em que um cultivar pode ser plantado em determinada área geográfica."@pt-br ;
+	rdfs:subClassOf 
+		gufo:Kind .
+		
+conto:PlantingMethod a rdfs:Class ;
+	rdfs:label "Planting Method"@en, "Forma de Plantio"@pt-br ;
+	dc:description 
+		"Forma de plantio refere-se ao modo como a planta é introduzida no solo no momento do plantio, e pode variar conforme o tipo de cultura, fase de desenvolvimento da planta e sistema produtivo. As principais formas incluem semeadura direta e transplante de mudas."@pt-br ;
+	rdfs:subClassOf 
+		gufo:Category .
+		
+conto:DirectSeeding a rdfs:Class ;
+	rdfs:label "Direct Seeding"@en, "Semeadura Direta"@pt-br ;
+	dc:description 
+		"Semeadura direta é a forma de plantio em que as sementes são depositadas diretamente no solo definitivo, onde ocorrerá todo o ciclo de vida da planta, desde a germinação até a colheita. É comum em culturas como milho, feijão, cenoura, rabanete e alface em sistemas simplificados, e exige preparo adequado do solo, controle de profundidade e umidade ideal para germinação."@pt-br ;
+	rdfs:subClassOf 
+		gufo:Kind, conto:PlantingMethod .	
+				
+conto:Harvest a rdfs:Class ;
+	rdfs:label "Harvest"@en, "Colheita"@pt-br ;
+	dc:description 
+		"Colheita é o conjunto de operações realizadas para remover os produtos agrícolas da planta ou do campo, no momento fisiológico ideal de maturação, com o objetivo de preservar a qualidade, sanidade e valor comercial da produção."@pt-br ;
+	rdfs:subClassOf
+		gufo:Kind .
+		
+conto:AnnualCropHarvest a rdfs:Class ;
+	rdfs:label "Annual Crop Harvest"@en, "Colheita de Cultivo Anual"@pt-br ;
+	dc:description 
+		"Especificidades da colheita de cultivos anuais."@pt-br ;
+	rdfs:subClassOf
+		gufo:SubKind , conto:Harvest .
+
+
+conto:Product a rdfs:Class ;
+	rdfs:label "Product"@en, "Produto"@pt-br ;
+	dc:description 
+		"Algo que é produzido por um cultivar que é consumido por seres humanos."@pt-br ;
+	rdfs:subClassOf
+		gufo:Role .
