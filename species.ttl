@@ -1,0 +1,112 @@
+@prefix conto: <http://www.semanticweb.org/lvian/ontologies/2024/4/conto#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+
+# Indivíduos das espécies de plantas
+
+conto:e_Cenoura a conto:PlantSpecies ;
+    skos:prefLabel "Daucus carota" ;
+    skos:altLabel "Cenoura"@pt-br ;
+    rdfs:comment "Planta cultivada por suas raízes alaranjadas ricas em caroteno, amplamente consumida como hortaliça."@pt-br .
+
+conto:e_AboboraMoranga a conto:PlantSpecies ;
+    skos:prefLabel "Cucurbita moschata" ;
+    skos:altLabel "Abóbora-moranga"@pt-br, "Moranga"@pt-br ;
+    rdfs:comment "Variedade de abóbora de polpa alaranjada e sabor adocicado."@pt-br .
+
+conto:e_Abobora a conto:PlantSpecies ;
+    skos:prefLabel "Cucurbita maxima" ;
+    skos:altLabel "Abóbora"@pt-br, "Jerimum"@pt-br ;
+    rdfs:comment "Planta cultivada por seus frutos grandes e carnosos, ricos em vitamina A."@pt-br .
+
+conto:e_Coentro a conto:PlantSpecies ;
+    skos:prefLabel "Coriandrum sativum" ;
+    skos:altLabel "Coentro"@pt-br ;
+    rdfs:comment "Erva aromática muito utilizada como tempero e para decoração de pratos."@pt-br ;
+
+conto:e_Abobrinha a conto:PlantSpecies ;
+    skos:prefLabel "Cucurbita pepo" ;
+    skos:altLabel "Abobrinha"@pt-br ;
+    rdfs:comment "Hortaliça de fruto alongado e tenro, consumida quando jovem."@pt-br .
+
+conto:e_Ervilha a conto:PlantSpecies ;
+    skos:prefLabel "Pisum sativum" ;
+    skos:altLabel "Ervilha"@pt-br ;
+    rdfs:comment "Leguminosa cultivada por suas sementes comestíveis, ricas em proteínas."@pt-br .
+
+conto:e_Maxixe a conto:PlantSpecies ;
+    skos:prefLabel "Cucumis anguria" ;
+    skos:altLabel "Maxixe"@pt-br .
+
+conto:e_Alface a conto:PlantSpecies ;
+    skos:prefLabel "Lactuca sativa" ;
+    skos:altLabel "Alface"@pt-br ;
+    rdfs:comment "Hortaliça folhosa muito consumida em saladas, rica em vitaminas e minerais."@pt-br .
+
+conto:e_Melancia a conto:PlantSpecies ;
+    skos:prefLabel "Citrullus lanatus" ;
+    skos:altLabel "Melancia"@pt-br ;
+    rdfs:comment "Fruto grande e refrescante, com polpa vermelha e alto teor de água."@pt-br .
+
+conto:e_Melao a conto:PlantSpecies ;
+    skos:prefLabel "Cucumis melo" ;
+    skos:altLabel "Melão"@pt-br ;
+    rdfs:comment "Fruto doce e aromático, com polpa alaranjada ou esverdeada."@pt-br .
+
+conto:e_Milho a conto:PlantSpecies ;
+    skos:prefLabel "Zea mays" ;
+    skos:altLabel "Milho"@pt-br ;
+    rdfs:comment "Cereal de grande importância econômica mundial, cultivado por seus grãos ricos em amido."@pt-br .
+
+conto:e_Berinjela a conto:PlantSpecies ;
+    skos:prefLabel "Solanum melongena" ;
+    skos:altLabel "Berinjela"@pt-br ;
+    rdfs:comment "Hortaliça de formato alongado e cor roxa, muito utilizada na culinária mediterrânea e árabe."@pt-br .
+
+conto:e_Beterraba a conto:PlantSpecies ;
+    skos:prefLabel "Beta vulgaris" ;
+    skos:altLabel "Beterraba"@pt-br ;
+    rdfs:comment "Planta cultivada por suas raízes tuberosas de cor vermelha intensa, rica em açúcares."@pt-br .
+
+conto:e_Couve a conto:PlantSpecies ;
+    skos:prefLabel "Brassica oleracea" ;
+    skos:altLabel "Repolho"@pt-br, "Couve"@pt-br, "Brócolis"@pt-br, "Couve-flor"@pt-br ;
+    rdfs:comment "Espécie que inclui diversas variedades como repolho, couve, brócolis e couve-flor."@pt-br .
+
+conto:e_Pepino a conto:PlantSpecies ;
+    skos:prefLabel "Cucumis sativus" ;
+    skos:altLabel "Pepino"@pt-br ;
+    rdfs:comment "Hortaliça de fruto alongado e refrescante, muito consumida em saladas."@pt-br .
+
+conto:e_Mostarda a conto:PlantSpecies ;
+    skos:prefLabel "Brassica juncea" ;
+    skos:altLabel "Mostarda"@pt-br .
+
+conto:e_Pimentinha a conto:PlantSpecies ;
+    skos:prefLabel "Capsicum chinense" ;
+    skos:altLabel "Pimenta biquinho"@pt-br, "Pimenta de cheiro"@pt-br .
+
+conto:e_Agriao a conto:PlantSpecies ;
+    skos:prefLabel "Barbarea verna" ;
+    skos:altLabel "Agrião da Terra"@pt-br .
+
+conto:e_Quiabo a conto:PlantSpecies ;
+    skos:prefLabel "Abelmoschus esculentus" ;
+    skos:altLabel "Quiabo"@pt-br .
+
+conto:e_Rabanete a conto:PlantSpecies ;
+    skos:prefLabel "Raphanus sativus" ;
+    skos:altLabel "Rabanete"@pt-br ;
+    rdfs:comment "Hortaliça de raiz comestível, de sabor picante e formato arredondado ou alongado."@pt-br .
+
+conto:e_Salsa a conto:PlantSpecies ;
+    skos:prefLabel "Petroselinum crispum" ;
+    skos:altLabel "Salsa"@pt-br, "Salsinha"@pt-br ;
+    rdfs:comment "Erva aromática muito utilizada como tempero e para decoração de pratos."@pt-br .
+
+conto:e_Tomate a conto:PlantSpecies ;
+    skos:prefLabel "Solanum lycopersicum" ;
+    skos:altLabel "Tomate"@pt-br ;
+    rdfs:comment "Fruto amplamente consumido como hortaliça, rico em licopeno e vitamina C."@pt-br .
+
