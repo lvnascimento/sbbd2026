@@ -1,0 +1,342 @@
+Baseado nesse exemplo, gostaria que você extraísse algumas informações sobre os cultivares descritos nos sites 
+
+https://www.sementesfeltrin.com.br/produtos/cenoura-nantes-milena/165
+
+Essas informações devem ser: nome do cultivar, nome da espécie, descrição, nome do produto obtido, características do cultivar (cor do fruto/raiz, cor das folhas, cor das flores, dimensões da raiz ou fruto (diâmetro e/ou comprimento), forma da raiz ou do fruto, tempo até colheita (em dias) tanto no verão (se houver) quanto no inverno (se houver), preferências de temperatura ambiente e pH do solo, meses em que se pode plantar em diferentes regiões, espaçamento entre plantas e linhas. Quero que você extraia essas informações única e exclusivamente do site mencionado, sem utilizar outras fontes. Considere a Região 3 como os estados do sul do Brasil, a Região 2 contendo São Paulo e Minas Gerais e a região 1 como os demais estados do Brasil.
+
+Modele essas informações abaixo como RDF Turtle usando as classes definidas na ontologia Conto, definida abaixo:
+
+conto:Cultivar a rdfs:Class ;
+	rdfs:label "Cultivar" ;
+	skos:altLabel "Variedade Cultivada"@pt-br, "Cultivated Variety"@en;
+	dc:description 
+		"A palavra cultivar tem origem no idioma inglês e é a combinação dos termos “cultivated” “variety” (variedade cultivada).  Variedade de planta é uma subcategoria de uma espécie vegetal que apresenta características distintas. Essas características podem ser de cor, tamanho, forma, resistência a doenças, ou sabor. De forma simplificada pode-se dizer que cultivares são variedades cultivadas de plantas que são obtidas por meio de técnicas de melhoramento genético que incluem: hibridização, reprodução seletiva, engenharia genética, ou por meio de mutações naturais, chamadas de esportes."@pt-br ;
+	rdfs:subClassOf 
+		gufo:Kind .
+
+conto:PlantSpecies a rdfs:Class ;
+	rdfs:label "Plant Species"@en, "Espécie de Planta"@pt-br ;
+	rdfs:comment 
+		"Espécie é um grupo de seres vivos que podem reproduzir-se entre si e que são isolados reprodutivamente de outros grupos. É a unidade básica do sistema taxonômico de seres vivos."@pt-br ;
+	rdfs:subClassOf
+		gufo:Kind .
+		
+conto:CultivarPreference a rdfs:Class ;
+	rdfs:label "Cultivar Preference"@en, "Preferência de Cultivar"@pt-br ;
+	dc:description 
+		"Uma preferência do cultivar com relação a algum fator específico (temperatura, luminosidade, água, nutrientes, solo, etc.)."@pt-br ;
+	rdfs:subClassOf
+		gufo:Category .
+		
+conto:TemperaturePreference a rdfs:Class ;
+	rdfs:label "Temperature Preference"@en, "Preferência de Cultivar"@pt-br ;
+	dc:description 
+		"A preferência de um cultivar quanto à temperatura."@pt-br ;
+	rdfs:subClassOf
+		gufo:Kind, conto:CultivarPreference .
+		
+conto:SoilpHPreference a rdfs:Class ;
+	rdfs:label "Soil pH Preference"@en, "Preferência de pH do Solo"@pt-br ;
+	dc:description 
+		"A preferência de um cultivar quanto ao pH do solo (ácido, neutro, alcalino)."@pt-br ;
+	rdfs:subClassOf
+		gufo:Kind, conto:CultivarPreference .
+
+conto:Management a rdfs:Class ;
+	rdfs:label "Management"@en, "Manejo"@pt-br ;
+	dc:description 
+		"Manejo é o conjunto de práticas técnicas e decisões aplicadas ao longo do ciclo de cultivo com o objetivo de promover o desenvolvimento saudável das plantas, otimizar a produção e conservar os recursos naturais. Essas práticas incluem o preparo do solo, adubação, irrigação, controle de pragas e doenças, condução das plantas, entre outras."@pt-br ;
+	rdfs:subClassOf
+		gufo:Kind .
+		
+conto:PlantingManagement a rdfs:Class ;
+	rdfs:label "Planting Management"@en, "Manejo de Plantio"@pt-br ;
+	dc:description 
+		"Plantio é o ato de colocar sementes, mudas ou propágulos vegetativos no solo ou em substrato, com o objetivo de iniciar o ciclo de cultivo de uma planta. Ele marca o início da fase de campo ou da produção em ambiente controlado (viveiro, estufa, canteiro), sendo influenciado por fatores como época, preparo do solo, forma de plantio, espaçamento e método de propagação."@pt-br ;
+	rdfs:subClassOf
+		gufo:SubKind , conto:Management .	
+
+conto:PlantingSeason a rdfs:Class ;
+	rdfs:label "Planting Season"@en, "Época de Plantio"@pt-br ;
+	dc:description 
+		"Época em que um cultivar pode ser plantado em determinada área geográfica."@pt-br ;
+	rdfs:subClassOf 
+		gufo:Kind .
+		
+conto:PlantingMethod a rdfs:Class ;
+	rdfs:label "Planting Method"@en, "Forma de Plantio"@pt-br ;
+	dc:description 
+		"Forma de plantio refere-se ao modo como a planta é introduzida no solo no momento do plantio, e pode variar conforme o tipo de cultura, fase de desenvolvimento da planta e sistema produtivo. As principais formas incluem semeadura direta e transplante de mudas."@pt-br ;
+	rdfs:subClassOf 
+		gufo:Category .
+		
+conto:DirectSeeding a rdfs:Class ;
+	rdfs:label "Direct Seeding"@en, "Semeadura Direta"@pt-br ;
+	dc:description 
+		"Semeadura direta é a forma de plantio em que as sementes são depositadas diretamente no solo definitivo, onde ocorrerá todo o ciclo de vida da planta, desde a germinação até a colheita. É comum em culturas como milho, feijão, cenoura, rabanete e alface em sistemas simplificados, e exige preparo adequado do solo, controle de profundidade e umidade ideal para germinação."@pt-br ;
+	rdfs:subClassOf 
+		gufo:Kind, conto:PlantingMethod .	
+				
+conto:Harvest a rdfs:Class ;
+	rdfs:label "Harvest"@en, "Colheita"@pt-br ;
+	dc:description 
+		"Colheita é o conjunto de operações realizadas para remover os produtos agrícolas da planta ou do campo, no momento fisiológico ideal de maturação, com o objetivo de preservar a qualidade, sanidade e valor comercial da produção."@pt-br ;
+	rdfs:subClassOf
+		gufo:Kind .
+		
+conto:AnnualCropHarvest a rdfs:Class ;
+	rdfs:label "Annual Crop Harvest"@en, "Colheita de Cultivo Anual"@pt-br ;
+	dc:description 
+		"Especificidades da colheita de cultivos anuais."@pt-br ;
+	rdfs:subClassOf
+		gufo:SubKind , conto:Harvest .
+
+
+conto:Product a rdfs:Class ;
+	rdfs:label "Product"@en, "Produto"@pt-br ;
+	dc:description 
+		"Algo que é produzido por um cultivar que é consumido por seres humanos."@pt-br ;
+	rdfs:subClassOf
+		gufo:Role .
+
+Para indivíduos da classe Cultivar utilize as seguintes propriedades:
+
+- prefLabel da ontologia SKOS para o nome do cultivar
+- comment de RDFS para a descrição do cultivar
+- hasSpecies de Conto para associar um cultivar com uma espécie (indivíduo de PlantSpecies), listados mais abaixo.
+- providesProduct para associar o cultivar com um ou mais produtos (indivíduos da classe Product), segundo listados também mais abaixo.
+- hasTrait da ontologia Conto para relacionar um cultivar com suas características.
+- hasPreference de Conto para relacionar o cultivar com um ou mais preferências (indivíduo da classe CultivarPreference)
+- hasManagement de Conto para relacionar o cultivar com manejo, incluindo manejo de plantio.
+
+Para indivíduos da classe Product utilize as seguintes propriedades:
+
+- label de RDFS para o nome do produto.
+- hasHarvest da ontologia Conto para relacionar um produto com informações de colheita.
+
+Um mesmo cultivar pode possuir mais de um produto, como raiz, frutos, folhas e flores. Fique atento que nos sites informados acima podem ser informados detalhes sobre outros produtos do cultivar, como flores comestíveis.
+
+Para modelar características do produto faça indivíduos com nomes apropriados criados por você a partir das seguintes classes da ontologia Plant Trait Ontology (TO):
+
+- to:0002710 (root shape) -> utilize como propriedade "label" de RDFS para um rótulo para a forma da raiz, se ela for o produto principal. Um exemplo:
+
+conto:root_shape_Reta a to:0002710 ;
+	skos:prefLabel "Reta"@pt-br .
+
+- to:0002628 (fruit shape) -> utilize como propriedade "label" de RDFS para um rótulo para a forma do fruto, se ele for o produto principal.
+- to:0000065 (root color) -> utilize como propriedade "label" de RDFS para um rótulo da cor da casca se a raiz da planta é seu produto principal.
+- to:0002620 (exocarp color) -> utilize como propriedade "label" de RDFS para um rótulo da cor da casca se o fruto da planta é seu produto principal.
+- to:0002619 (mesocarp color) -> utilize como propriedade "label" de RDFS para um rótulo da cor da polpa se o fruto da planta é seu produto principal.
+- to:0000537 (flower color) -> utilize como propriedade "label" de RDFS para um rótulo da cor da flor, se houver.
+- to:0000326 (leaf color) -> utilize como propriedade "label" de RDFS para um rótulo da cor da folha, se houver.
+- to:0000306 (root thickness) -> utilize a propriedade hasQuantity da ontologia QUDT para modelar um intervalo de valores como um indivíduo de Quantity (QUDT), seguindo o exemplo abaixo (para um intervalo de 3 a 4 cm de diâmetro):
+	
+conto:q_Diameter_3a4cm a qudt:Quantity ;
+	qudt:hasQuantityKind quantitykind:Diameter ;
+	qudt:quantityValue conto:qval_3a4cm .
+
+conto:qval_3a4cm a qudt:QuantityValue ;
+	qudt:hasUnit unit:CentiM ;
+	qudt:minInclusive 3 ;
+	qudt:maxInclusive 4 .
+
+- to:0000227 (root length) -> também utilize a propriedade hasQuantity de forma similar, mas com quantity kind "Length".
+
+
+Para informações de colheita utilize a classe AnnualCropHarvest para cultivos anuais com a propriedade timeToHarvest_Summer para especificar o ciclo até colheita no verão e timeToHarvest_Winter para especificar o ciclo até colheita no inverno. Em ambos os casos, utilize um indivíduo da classe Quantity de QUDT, seguindo o seguinte exemplo (para um tempo de 75 dias):
+
+conto:q_Tempo_75d a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Time ;
+    qudt:quantityValue conto:qval_75d .
+
+conto:qval_75d a qudt:QuantityValue ;
+    qudt:hasUnit unit:DAY ;
+    qudt:numericValue 75 .
+
+Para preferências do cultivar utilize subclasses de CultivarPreference. Para cada preferência associe um Quantity relacionado a um intervalo de valores, como mostrado anteriormente para o diâmetro da raiz, mas relacionado a quantity kinds apropriados e unidades apropriadas. Seguem alguns quantity kinds que podem ser úteis: quantitykind:Acidity, quantitykind:Temperature. Seguem algumas unidades que podem ser úteis: unit:PH, unit:DEG_C. 
+
+Com relação ao plantio, crie um indivíduo da classe PlantingManagement de Conto com as seguintes propriedades (todas de Conto):
+
+- rowSpacing para espaçamento entre linhas (valor Quantity único, similar ao mostrado para o ciclo de colheita)
+- plantSpacing para espaçamento entre plantas (valor Quantity único, similar ao mostrado para o ciclo de colheita)
+- hasPlantingSeason que relaciona com um indivíduo de PlantingSeason de Conto.
+- hasPlantingMethod que associa o indivíduo com outro da classe DirectSeeding contendo uma propriedade timeToGerminate de Conto com um indivíduo de Quantity especificando o intervalo de dias estimado para germinação.
+
+Para um indivíduo de PlantingSeason coloque as seguintes propriedades:
+
+- hasTime da ontologia Time para associar com um indivíduo de Instant de Time definido para um mês onde o cultivar pode ser plantado na região especificada na propriedade hasLocation
+- hasLocation de DUL relacionando com a região geográfica(Regiao1, Regiao2, Regiao3, definidas mais abaixo)
+
+Segue instâncias necessárias para seu trabalho (use as instâncias abaixo para meses, regiões geográficas e espécies):
+
+# Meses do ano
+
+conto:time_Janeiro      a time:Instant ; time:inDateTime greg:January .
+conto:time_Fevereiro    a time:Instant ; time:inDateTime greg:February .
+conto:time_Marco        a time:Instant ; time:inDateTime greg:March .
+conto:time_Abril        a time:Instant ; time:inDateTime greg:April .
+conto:time_Maio         a time:Instant ; time:inDateTime greg:May .
+conto:time_Junho        a time:Instant ; time:inDateTime greg:June .
+conto:time_Julho        a time:Instant ; time:inDateTime greg:July .
+conto:time_Agosto       a time:Instant ; time:inDateTime greg:August .
+conto:time_Setembro     a time:Instant ; time:inDateTime greg:September .
+conto:time_Outubro      a time:Instant ; time:inDateTime greg:October .
+conto:time_Novembro     a time:Instant ; time:inDateTime greg:November .
+conto:time_Dezembro     a time:Instant ; time:inDateTime greg:December .
+
+
+# Regiões geográficas usadas
+
+conto:place_Regiao1 a dul:Place ;
+	dul:hasPart conto:place_estado_Acre ;
+	dul:hasPart conto:place_estado_Amazonas ;
+	dul:hasPart conto:place_estado_Roraima ;
+	dul:hasPart conto:place_estado_Rondonia ;
+	dul:hasPart conto:place_estado_Para ;
+	dul:hasPart conto:place_estado_Amapa ;
+	dul:hasPart conto:place_estado_Mato_Grosso ;
+	dul:hasPart conto:place_estado_Mato_Grosso_do_Sul ;
+	dul:hasPart conto:place_estado_Goias ;
+	dul:hasPart conto:place_estado_Tocantins ;
+	dul:hasPart conto:place_estado_Maranhao ;
+	dul:hasPart conto:place_estado_Piaui ;
+	dul:hasPart conto:place_estado_Ceara ;
+	dul:hasPart conto:place_estado_Rio_Grande_do_Norte ;
+	dul:hasPart conto:place_estado_Pernambuco ;
+	dul:hasPart conto:place_estado_Alagoas ;
+	dul:hasPart conto:place_estado_Sergipe ;
+	dul:hasPart conto:place_estado_Bahia ;
+	dul:hasPart conto:place_estado_Espirito_Santo ;
+	dul:hasPart conto:place_estado_Rio_de_Janeiro .
+	
+conto:place_Regiao2 a dul:Place ;
+	dul:hasPart conto:place_estado_Minas_Gerais ;
+	dul:hasPart conto:place_estado_Sao_Paulo .
+
+conto:place_Regiao3 a dul:Place ;
+	dul:hasPart conto:place_estado_Parana ;
+	dul:hasPart conto:place_estado_Santa_Catarina ;
+	dul:hasPart conto:place_estado_Rio_Grande_do_Sul .
+
+# Indivíduos das espécies de plantas
+
+conto:e_Cenoura a conto:PlantSpecies ;
+    skos:prefLabel "Daucus carota" ;
+    skos:altLabel "Cenoura"@pt-br ;
+    rdfs:comment "Planta cultivada por suas raízes alaranjadas ricas em caroteno, amplamente consumida como hortaliça."@pt-br .
+
+conto:e_AboboraMoranga a conto:PlantSpecies ;
+    skos:prefLabel "Cucurbita moschata" ;
+    skos:altLabel "Abóbora-moranga"@pt-br, "Moranga"@pt-br ;
+    rdfs:comment "Variedade de abóbora de polpa alaranjada e sabor adocicado."@pt-br .
+
+conto:e_Abobora a conto:PlantSpecies ;
+    skos:prefLabel "Cucurbita maxima" ;
+    skos:altLabel "Abóbora"@pt-br, "Jerimum"@pt-br ;
+    rdfs:comment "Planta cultivada por seus frutos grandes e carnosos, ricos em vitamina A."@pt-br .
+
+conto:e_Coentro a conto:PlantSpecies ;
+    skos:prefLabel "Coriandrum sativum" ;
+    skos:altLabel "Coentro"@pt-br ;
+    rdfs:comment "Erva aromática muito utilizada como tempero e para decoração de pratos."@pt-br ;
+
+conto:e_Abobrinha a conto:PlantSpecies ;
+    skos:prefLabel "Cucurbita pepo" ;
+    skos:altLabel "Abobrinha"@pt-br ;
+    rdfs:comment "Hortaliça de fruto alongado e tenro, consumida quando jovem."@pt-br .
+
+conto:e_Ervilha a conto:PlantSpecies ;
+    skos:prefLabel "Pisum sativum" ;
+    skos:altLabel "Ervilha"@pt-br ;
+    rdfs:comment "Leguminosa cultivada por suas sementes comestíveis, ricas em proteínas."@pt-br .
+
+conto:e_Maxixe a conto:PlantSpecies ;
+    skos:prefLabel "Cucumis anguria" ;
+    skos:altLabel "Maxixe"@pt-br .
+
+conto:e_Alface a conto:PlantSpecies ;
+    skos:prefLabel "Lactuca sativa" ;
+    skos:altLabel "Alface"@pt-br ;
+    rdfs:comment "Hortaliça folhosa muito consumida em saladas, rica em vitaminas e minerais."@pt-br .
+
+conto:e_Melancia a conto:PlantSpecies ;
+    skos:prefLabel "Citrullus lanatus" ;
+    skos:altLabel "Melancia"@pt-br ;
+    rdfs:comment "Fruto grande e refrescante, com polpa vermelha e alto teor de água."@pt-br .
+
+conto:e_Melao a conto:PlantSpecies ;
+    skos:prefLabel "Cucumis melo" ;
+    skos:altLabel "Melão"@pt-br ;
+    rdfs:comment "Fruto doce e aromático, com polpa alaranjada ou esverdeada."@pt-br .
+
+conto:e_Milho a conto:PlantSpecies ;
+    skos:prefLabel "Zea mays" ;
+    skos:altLabel "Milho"@pt-br ;
+    rdfs:comment "Cereal de grande importância econômica mundial, cultivado por seus grãos ricos em amido."@pt-br .
+
+conto:e_Berinjela a conto:PlantSpecies ;
+    skos:prefLabel "Solanum melongena" ;
+    skos:altLabel "Berinjela"@pt-br ;
+    rdfs:comment "Hortaliça de formato alongado e cor roxa, muito utilizada na culinária mediterrânea e árabe."@pt-br .
+
+conto:e_Beterraba a conto:PlantSpecies ;
+    skos:prefLabel "Beta vulgaris" ;
+    skos:altLabel "Beterraba"@pt-br ;
+    rdfs:comment "Planta cultivada por suas raízes tuberosas de cor vermelha intensa, rica em açúcares."@pt-br .
+
+conto:e_Couve a conto:PlantSpecies ;
+    skos:prefLabel "Brassica oleracea" ;
+    skos:altLabel "Repolho"@pt-br, "Couve"@pt-br, "Brócolis"@pt-br, "Couve-flor"@pt-br ;
+    rdfs:comment "Espécie que inclui diversas variedades como repolho, couve, brócolis e couve-flor."@pt-br .
+
+conto:e_Pepino a conto:PlantSpecies ;
+    skos:prefLabel "Cucumis sativus" ;
+    skos:altLabel "Pepino"@pt-br ;
+    rdfs:comment "Hortaliça de fruto alongado e refrescante, muito consumida em saladas."@pt-br .
+
+conto:e_Mostarda a conto:PlantSpecies ;
+    skos:prefLabel "Brassica juncea" ;
+    skos:altLabel "Mostarda"@pt-br .
+
+conto:e_Pimentinha a conto:PlantSpecies ;
+    skos:prefLabel "Capsicum chinense" ;
+    skos:altLabel "Pimenta biquinho"@pt-br, "Pimenta de cheiro"@pt-br .
+
+conto:e_Agriao a conto:PlantSpecies ;
+    skos:prefLabel "Barbarea verna" ;
+    skos:altLabel "Agrião da Terra"@pt-br .
+
+conto:e_Quiabo a conto:PlantSpecies ;
+    skos:prefLabel "Abelmoschus esculentus" ;
+    skos:altLabel "Quiabo"@pt-br .
+
+conto:e_Rabanete a conto:PlantSpecies ;
+    skos:prefLabel "Raphanus sativus" ;
+    skos:altLabel "Rabanete"@pt-br ;
+    rdfs:comment "Hortaliça de raiz comestível, de sabor picante e formato arredondado ou alongado."@pt-br .
+
+conto:e_Salsa a conto:PlantSpecies ;
+    skos:prefLabel "Petroselinum crispum" ;
+    skos:altLabel "Salsa"@pt-br, "Salsinha"@pt-br ;
+    rdfs:comment "Erva aromática muito utilizada como tempero e para decoração de pratos."@pt-br .
+
+conto:e_Tomate a conto:PlantSpecies ;
+    skos:prefLabel "Solanum lycopersicum" ;
+    skos:altLabel "Tomate"@pt-br ;
+    rdfs:comment "Fruto amplamente consumido como hortaliça, rico em licopeno e vitamina C."@pt-br .
+
+Considere os seguintes prefixos:
+
+@prefix conto: <http://www.semanticweb.org/lvian/ontologies/2024/4/conto#> .
+@prefix to: <http://purl.obolibrary.org/obo/TO_> .
+@prefix qudt: <http://purl.org/qudt/schema/qudt/> .
+@prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix foodon: <http://purl.obolibrary.org/obo/FOODON_> .
+
+Não repita indivíduos para quantidades quando certas propriedades compartilharem os mesmos valores.
