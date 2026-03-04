@@ -1,0 +1,214 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix conto: <http://www.semanticweb.org/lvian/ontologies/2024/4/conto#> .
+@prefix qudt: <http://purl.org/qudt/schema/qudt/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+#################################################################
+# 1️⃣ Cultivar Shape
+#################################################################
+
+conto:CultivarShape
+    a sh:NodeShape ;
+    sh:targetClass conto:Cultivar ;
+
+    sh:property [
+        sh:path skos:prefLabel ;
+        sh:minCount 1 ;
+        sh:or (
+            [ sh:datatype rdfs:Literal ]
+            [ sh:datatype xsd:string ]
+        )
+    ] ;
+
+    sh:property [
+        sh:path rdfs:comment ;
+        sh:minCount 1 ;
+		sh:or (
+            [ sh:datatype rdfs:Literal ]
+            [ sh:datatype xsd:string ]
+        )
+	] ;
+
+    sh:property [
+        sh:path conto:hasSpecies ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class conto:PlantSpecies ;
+    ] ;
+
+    sh:property [
+        sh:path conto:providesProduct ;
+        sh:minCount 1 ;
+        sh:class conto:Product ;
+    ] ;
+
+    sh:property [
+        sh:path conto:hasManagement ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class conto:PlantingManagement ;
+    ] ;
+
+    sh:property [
+        sh:path conto:hasPreference ;
+        sh:or (
+            [ sh:class conto:TemperaturePreference ]
+            [ sh:class conto:SoilpHPreference ]
+        )
+    ] .
+
+#################################################################
+# 3️⃣ Product Shape
+#################################################################
+
+conto:ProductShape
+    a sh:NodeShape ;
+    sh:targetClass conto:Product ;
+
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:or (
+            [ sh:datatype rdfs:Literal ]
+            [ sh:datatype xsd:string ]
+        )
+    ] ;
+
+    sh:property [
+        sh:path conto:hasHarvest ;
+        sh:class conto:AnnualCropHarvest ;
+    ] .
+
+#################################################################
+# 4️⃣ AnnualCropHarvest Shape
+#################################################################
+
+conto:HarvestShape
+    a sh:NodeShape ;
+    sh:targetClass conto:AnnualCropHarvest ;
+
+    sh:property [
+        sh:path conto:timeToHarvest_Summer ;
+        sh:class qudt:Quantity ;
+    ] ;
+
+    sh:property [
+        sh:path conto:timeToHarvest_Winter ;
+        sh:class qudt:Quantity ;
+    ] .
+
+#################################################################
+# 5️⃣ PlantingManagement Shape
+#################################################################
+
+conto:PlantingManagementShape
+    a sh:NodeShape ;
+    sh:targetClass conto:PlantingManagement ;
+
+    sh:property [
+        sh:path conto:rowSpacing ;
+        sh:minCount 1 ;
+		sh:maxCount 1 ;
+		sh:class qudt:Quantity ;
+    ] ;
+
+    sh:property [
+        sh:path conto:plantSpacing ;
+        sh:minCount 1 ;
+		sh:maxCount 1 ;
+        sh:class qudt:Quantity ;
+    ] ;
+
+    sh:property [
+        sh:path conto:hasPlantingSeason ;
+        sh:minCount 1 ;
+        sh:class conto:PlantingSeason ;
+    ] .
+
+#################################################################
+# 6️⃣ PlantingSeason Shape
+#################################################################
+
+conto:PlantingSeasonShape
+    a sh:NodeShape ;
+    sh:targetClass conto:PlantingSeason ;
+
+    sh:property [
+        sh:path dul:hasLocation ;
+        sh:minCount 1 ;
+        sh:class dul:Place ;
+    ] ;
+
+    sh:property [
+        sh:path time:hasTime ;
+        sh:minCount 1 ;
+        sh:class time:Instant ;
+    ] .
+
+#################################################################
+# 7️⃣ CultivarPreference Shape
+#################################################################
+
+conto:CultivarPreferenceShape
+    a sh:NodeShape ;
+    sh:targetClass conto:CultivarPreference ;
+
+    sh:property [
+        sh:path qudt:hasQuantity ;
+        sh:class qudt:Quantity ;
+    ] .
+
+#################################################################
+# 8️⃣ Generic QUDT Quantity Shape
+#################################################################
+
+conto:QuantityShape
+    a sh:NodeShape ;
+    sh:targetClass qudt:Quantity ;
+
+    sh:property [
+        sh:path qudt:hasQuantityKind ;
+        sh:minCount 1 ;
+		sh:maxCount 1 ;	
+    ] ;
+
+    sh:property [
+        sh:path qudt:quantityValue ;
+        sh:minCount 1 ;
+		sh:maxCount 1 ;
+		sh:class qudt:QuantityValue ;
+    ] .
+	
+#################################################################
+# 8️⃣ Generic QUDT QuantityValue Shape
+#################################################################
+
+conto:QuantityValueShape
+    a sh:NodeShape ;
+    sh:targetClass qudt:QuantityValue ;
+
+    sh:property [
+        sh:path qudt:hasUnit ;
+        sh:minCount 1 ;
+		sh:maxCount 1 ;	
+    ] ;
+	
+	sh:property [
+        sh:path qudt:minInclusive ;
+        sh:maxCount 1 ;	
+    ] ;
+	
+	sh:property [
+        sh:path qudt:maxInclusive ;
+        sh:maxCount 1 ;	
+    ] ;
+
+    sh:property [
+        sh:path qudt:numericValue ;
+        sh:maxCount 1 ;
+    ] .
